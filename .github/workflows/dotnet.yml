@@ -1,0 +1,61 @@
+name: .NET
+
+on:
+  push:
+    branches: [ master ]
+    paths-ignore: /docs 
+  pull_request:
+    branches: [ master ]
+    paths-ignore: /docs
+    
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Upload build
+      uses: actions/upload-artifact@v3.1.0
+      with:
+         name: calc-results 
+  
+  test:
+    runs-on: ubuntu-latest
+  
+    steps: 
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    
+    - name: Download build
+      uses: actions/download-artifact@v3.1.0
+      with:
+         name: calc-results 
+        
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+      
+    - name: Create living Doc
+      run: livingdoc test-assembly /SpecFlowCalculator.Specs/bin/net6.0/SpecFlowCalculator.Specs.dll -t TestExecution.json
+    
+    - name: Copy report 
+      run: |
+        cp /SpecFlowCalculator.Specs/bin/net6.0/LivingDoc.html /docs
+    
+    - name: Commit report
+      run: |
+        git config --global user.name 'GitHub Bot'
+        git config --global user.email 'github-bot@users.noreply.github.com'
+        git commit -am "Test Results report"
+        git push
