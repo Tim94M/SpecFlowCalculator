@@ -34,7 +34,7 @@ jobs:
       
     - name: Create living Doc
       run: |
-        livingdoc feature-folder .\SpecFlowCalculator.Specs\ -t .\SpecFlowCalculator.Specs\bin\Debug\net6.0\TestExecution.json
+        dotnet tool livingdoc feature-folder .\SpecFlowCalculator.Specs\ -t .\SpecFlowCalculator.Specs\bin\Debug\net6.0\TestExecution.json
     
     - name: Copy report 
       run: |
