@@ -22,6 +22,8 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
+    - name: Restore tools
+      run: dotnet tool restore
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -31,7 +33,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
       
     - name: Create living Doc
-      run: livingdoc test-assembly /SpecFlowCalculator.Specs/bin/net6.0/SpecFlowCalculator.Specs.dll -t TestExecution.json
+      run: dotnet tool run livingdoc test-assembly /SpecFlowCalculator.Specs/bin/net6.0/SpecFlowCalculator.Specs.dll -t TestExecution.json
     
     - name: Copy report 
       run: |
