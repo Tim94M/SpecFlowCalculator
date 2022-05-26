@@ -34,15 +34,11 @@ jobs:
       
     - name: Create living Doc
       run: |
-        cd SpecFlowCalculator.Specs/bin/Debug/net6.0/
-        ls
-        dotnet tool run livingdoc test-assembly SpecFlowCalculator.dll -t TestExecution.json
-        cd ../../../../
-        ls
+        livingdoc feature-folder .\SpecFlowCalculator.Specs\ -t .\SpecFlowCalculator.Specs\bin\Debug\net6.0\TestExecution.json
     
     - name: Copy report 
       run: |
-        cp /SpecFlowCalculator.Specs/bin/Debug/net6.0/LivingDoc.html /docs
+        cp LivingDoc.html /docs
     
     - name: Commit report
       run: |
