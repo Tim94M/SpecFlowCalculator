@@ -33,11 +33,14 @@ jobs:
       run: dotnet test --no-build --verbosity normal
       
     - name: Create living Doc
-      run: dotnet tool run livingdoc test-assembly SpecFlowCalculator.Specs/bin/Debug/net6.0/SpecFlowCalculator.dll -t SpecFlowCalculator.Specs/bin/Debug/net6.0/TestExecution.json
+      run: |
+        cd SpecFlowCalculator.Specs/bin/Debug/net6.0/
+        dotnet tool run livingdoc test-assembly SpecFlowCalculator.dll -t TestExecution.json
+        cd ../../../../
     
     - name: Copy report 
       run: |
-        cp SpecFlowCalculator.Specs/bin/Debug/net6.0/LivingDoc.html /docs
+        cp /SpecFlowCalculator.Specs/bin/Debug/net6.0/LivingDoc.html /docs
     
     - name: Commit report
       run: |
