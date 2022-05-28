@@ -1,3 +1,3 @@
-# Test Results
+# View Github Pages for more infos
 
-View current state here: [Test Results on Github Pages](https://tim94m.github.io/SpecFlowCalculator/)
+[Github Pages](https://tim94m.github.io/SpecFlowCalculator/)
