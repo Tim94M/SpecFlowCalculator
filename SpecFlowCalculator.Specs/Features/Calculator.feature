@@ -18,3 +18,15 @@ Scenario: Subtract two numbers
 	And the second number is 25
 	When the two numbers are subtracted
 	Then the result should be 35
+
+@mytag
+Scenario: Multiply two numbers
+	Given the first number is <First>
+	And the second number is <Second>
+	When the two numbers are multiplied
+	Then the result should be <Result>
+	Examples: 
+		| First | Second | Result |
+		| 5     | 10     | 50     |
+		| -1    | -1     | 1      |
+		| 2     | 4      | 8      |

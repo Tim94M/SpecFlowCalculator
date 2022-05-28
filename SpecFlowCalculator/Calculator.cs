@@ -14,5 +14,10 @@
         {
             return FirstNumber - SecondNumber;
         }
+
+        public int Multiply()
+        {
+            return FirstNumber * SecondNumber;
+        }
     }
 }

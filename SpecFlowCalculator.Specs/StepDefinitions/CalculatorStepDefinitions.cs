@@ -32,6 +32,12 @@ namespace SpecFlowCalculator.Specs.StepDefinitions
             res = calculator.Subtract();
         }
 
+        [When("the two numbers are multiplied")]
+        public void WhenTheTwoNumbersAreMultiplied()
+        {
+            res = calculator.Multiply();
+        }
+
         [Then("the result should be (.*)")]
         public void ThenTheResultShouldBe(int result)
         {
