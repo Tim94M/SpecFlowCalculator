@@ -38,7 +38,7 @@ jobs:
     
     - name: Copy report 
       run: |
-        cp LivingDoc.html /docs
+        Copy-Item LivingDoc.html /docs/LivingDoc.html
     
     - name: Commit report
       run: |
